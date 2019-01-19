@@ -64,62 +64,31 @@
 //     return ageRanges
 // }
 
-function groupAdultsByAgeRange(peopleArray) {
+const groupAdultsByAgeRange = peopleArray => {
 
-    const ages = {'20 and younger': [], '21-30': [], '31-40': [], '41-50': []};
 
-    const results = peopleArray.reduce((obj, person) => {
-        if (person.age >= 41) {
-            obj['41-50'].push(person)
+    return peopleArray
+        .filter(person => person.age >=18)
+        .reduce((obj, person) => {
+        if (person.age >= 51) {
+            ageGroup = '51 and older'
+        } else if (person.age >= 41) {
+            ageGroup = '41-50'
+            //  = obj['41-50'].push(person)
         } else if (person.age >= 31) {
-            obj['31-40'].push(person)
+            ageGroup = '31-40'
+            //  = obj['31-40'].push(person)
         } else if (person.age >= 21) {
-            obj['21-30'].push(person)
+            ageGroup = '21-30'
+            //  = obj['21-30'].push(person)
         } else {
-            obj['20 and younger'].push(person)
+            ageGroup = '20 and younger'
+            //  = obj['20 and younger'].push(person)
         };
+        obj[ageGroup] = person;
         return obj
-    }, ages);
-
-    if (ages['41-50'].length === 0) {
-        delete ages['41-50']
-    } else if (ages['31-40'].length === 0) {
-        delete ages['31-40']
-    } else if (ages['21-30'].length === 0) {
-        delete ages['21-30']
-    } else if (ages['20 and younger'].length === 0) {
-        delete ages['20 and younger']
-    };
-
-    return results
+    }, {});
 };
 
-module.exports.transform = groupAdultsByAgeRange;
+module.exports = { groupAdultsByAgeRange };
 
-// const people = [{name: "Henry", age: 9}, {name: "John", age: 20}, {name: "Anna", age: 31}, {name: "John", age: 32}, {name: "Hank", age: 60}];
-
-// const people2 = [
-//     { name: "pete", age: 10 },
-//     { name: "dove", age: 17 },
-//     { name: "dave", age: 18 },
-//     { name: "hall", age: 19 },
-//     { name: "donn", age: 20 },
-//     { name: "trey", age: 21 },
-//     { name: "hann", age: 29 },
-//     { name: "chew", age: 30 },
-//     { name: "cloe", age: 31 },
-//     { name: "dart", age: 39 },
-//     { name: "this", age: 40 },
-//     { name: "dame", age: 41 },
-//     { name: "henk", age: 49 },
-//     { name: "anna", age: 50 },
-//     { name: "olga", age: 51 },
-//     { name: "bert", age: 52 },
-//     { name: "oldd", age: 120 },
-// ];
-
-// const array = groupAdultsByAgeRange(people)
-// const array2 = groupAdultsByAgeRange(people2)
-
-// console.log(array);
-// console.log(array2);
