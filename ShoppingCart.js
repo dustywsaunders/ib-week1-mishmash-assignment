@@ -35,19 +35,23 @@ class ShoppingCart {
         // this way, you just clear the existing array
         return this.items.length = 0
     }
+
+    total() {
+        const total = this.items.reduce((sum, value) => sum + value.quantity * value.pricePerUnit, 0)
+        return total
+    }
 };
 
-const cart = new ShoppingCart();
+// const cart = new ShoppingCart();
+// cart.addItem('shoes', 1, 100);
+// cart.addItem('shirt', 2, 30);
+// cart.addItem('socks', 3, 10)
+// cart.clear()
+// cart.getItems()
+// cart.total()
+// console.log(cart);
+// console.log(cart.total());
 
-cart.addItem(1, 2, 3);
-cart.addItem(4, 5, 6);
-cart.addItem(7, 8, 9)
-cart.clear()
-cart.getItems()
 
-
-console.log(cart);
-
-
-module.exports = { ShoppingCart };
+module.exports = ShoppingCart;
 
