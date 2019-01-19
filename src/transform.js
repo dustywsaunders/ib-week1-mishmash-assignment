@@ -64,13 +64,11 @@
 //     return ageRanges
 // }
 
-function groupAdultsByAgeRange (peopleArray) {
+function groupAdultsByAgeRange(peopleArray) {
 
     const ages = {'20 and younger': [], '21-30': [], '31-40': [], '41-50': []};
 
-    const filter = peopleArray.filter(person => person.age >= 18)
-
-    const results = filter.reduce((obj, person) => {
+    const results = peopleArray.reduce((obj, person) => {
         if (person.age >= 41) {
             obj['41-50'].push(person)
         } else if (person.age >= 31) {
@@ -96,7 +94,7 @@ function groupAdultsByAgeRange (peopleArray) {
     return results
 };
 
-// module.exports = groupAdultsByAgeRange;
+module.exports.transform = groupAdultsByAgeRange;
 
 // const people = [{name: "Henry", age: 9}, {name: "John", age: 20}, {name: "Anna", age: 31}, {name: "John", age: 32}, {name: "Hank", age: 60}];
 
